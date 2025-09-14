@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Painting Club Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+      width: 350px;
+    }
+    h2 {
+      text-align: center;
+      color: #ff6600;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      color: #333;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #ff6600;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #e55d00;
+    }
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>🎨 Painting Club</h2>
+    <form id="paintForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" placeholder="Enter your full name">
+      <div id="nameError" class="error"></div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Enter your email">
+      <div id="emailError" class="error"></div>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Min 6 characters">
+      <div id="passError" class="error"></div>
+
+      <label for="level">Skill Level:</label>
+      <select id="level">
+        <option value="">-- Select Level --</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+      <div id="levelError" class="error"></div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("paintForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // clear errors
+      document.getElementById("nameError").textContent = "";
+      document.getElementById("emailError").textContent = "";
+      document.getElementById("passError").textContent = "";
+      document.getElementById("levelError").textContent = "";
+
+      let isValid = true;
+
+      // name validation (min 6 characters)
+      let name = document.getElementById("name").value.trim();
+      if (name.length < 6) {
+        document.getElementById("nameError").textContent = "Name must be at least 6 characters.";
+        isValid = false;
+      }
+
+      // email validation
+      let email = document.getElementById("email").value.trim();
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        document.getElementById("emailError").textContent = "Enter a valid email address.";
+        isValid = false;
+      }
+
+      // password validation
+      let password = document.getElementById("password").value.trim();
+      if (password.length < 6) {
+        document.getElementById("passError").textContent = "Password must be at least 6 characters.";
+        isValid = false;
+      }
+
+      // level validation
+      let level = document.getElementById("level").value;
+      if (level === "") {
+        document.getElementById("levelError").textContent = "Please select your skill level.";
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert("Registration Successful! 🎉 Welcome to the Painting Club!");
+        document.getElementById("paintForm").reset();
+      }
+    });
+  </script>
+</body>
+</html>

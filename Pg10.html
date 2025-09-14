@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Baking Championship Registration</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fff0f6, #fde2e4, #fff5e1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff8f3;
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      width: 460px;
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: #d45a7c;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px #fbc5d8;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+      color: #4a2c2a;
+      text-align: left;
+    }
+
+    input, select, textarea {
+      width: 90%;
+      padding: 10px;
+      border: 2px solid #ffd6e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #ff7aa2;
+      box-shadow: 0 0 6px rgba(255,122,162,0.6);
+    }
+
+    .btns {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin: 8px;
+      border: none;
+      border-radius: 12px;
+      background: #ff7aa2;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e65a87;
+      transform: scale(1.05);
+    }
+
+    #msg {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .success { color: green; }
+    .error { color: red; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🧾 Baking Championship Registration</h2>
+    <form onsubmit="return validateForm()" onreset="clearMsg()">
+      <label for="fname">Full Name</label>
+      <input type="text" id="fname" placeholder="Enter your name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" placeholder="Enter 10-digit phone" required>
+
+      <label for="qual">Qualification</label>
+      <select id="qual" required>
+        <option value="">-- Select Qualification --</option>
+        <option>High School</option>
+        <option>PUC / Intermediate</option>
+        <option>Bachelor’s Degree</option>
+        <option>Master’s Degree</option>
+        <option>Other</option>
+      </select>
+
+      <label for="pwd">Password</label>
+      <input type="password" id="pwd" placeholder="Enter password" required>
+
+      <div class="btns">
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+    <p id="msg"></p>
+    <a href="file:///C:/Users/Aleena/Desktop/Activity/index.html">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    function validateForm() {
+      let name = document.getElementById("fname").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let phone = document.getElementById("phone").value.trim();
+      let qual = document.getElementById("qual").value;
+      let pwd = document.getElementById("pwd").value;
+      let msg = document.getElementById("msg");
+
+      // Validate name
+      if (!/^[A-Za-z\s]+$/.test(name) || name.length < 6) {
+        msg.innerText = "❌ Name must contain only letters & be at least 6 characters long.";
+        msg.className = "error";
+        return false;
+      }
+
+      // Validate email
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!emailPattern.test(email)) {
+        msg.innerText = "❌ Please enter a valid email address.";
+        msg.className = "error";
+        return false;
+      }
+
+      // Validate phone (10 digits only)
+      if (!/^[0-9]{10}$/.test(phone)) {
+        msg.innerText = "❌ Phone number must be 10 digits.";
+        msg.className = "error";
+        return false;
+      }
+
+      // Validate qualification
+      if (qual === "") {
+        msg.innerText = "❌ Please select your qualification.";
+        msg.className = "error";
+        return false;
+      }
+
+      // Validate password
+      if (pwd.length < 6 || !/[A-Z]/.test(pwd) || !/[a-z]/.test(pwd)) {
+        msg.innerText = "❌ Password must be ≥ 6 characters with upper & lower case letters.";
+        msg.className = "error";
+        return false;
+      }
+
+      msg.innerText = "✅ Registration Successful! You are entered into the Baking Championship 🎉";
+      msg.className = "success";
+      return false;
+    }
+
+    function clearMsg() {
+      document.getElementById("msg").innerText = "";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Creations</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff5f8;
+      text-align: center;
+      padding: 20px;
+      color: #333;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      color: #d26977;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+      gap: 20px;
+      justify-items: center;
+      margin-bottom: 30px;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    a {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #fff;
+      background: #d26977;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    a:hover {
+      background: #c1556e;
+    }
+
+    @media screen and (max-width: 700px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on smaller screens */
+      }
+    }
+
+    @media screen and (max-width: 450px) {
+      .gallery {
+        grid-template-columns: 1fr; /* 1 per row on tiny screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2><u> Our Creations</h2></u>
+  <p>Take a look at our sweet delights!</p>
+
+  <div class="gallery">
+    <img src="C:\Users\Aleena\Downloads\ck6.jpg" alt="Cupcake">
+    <img src="C:\Users\Aleena\Downloads\ck1.webp" alt="Cake">
+    <img src="C:\Users\Aleena\Downloads\ck3.webp" alt="Pastry ">
+    <img src="C:\Users\Aleena\Downloads\ck4.jpg" alt="Chocolate">
+    <img src="C:\Users\Aleena\Downloads\ck7.jpg" alt="Cake 2">
+    <img src="C:\Users\Aleena\Downloads\ck2.png" alt="Cookies">
+  </div>
+
+  <p><a href="file:///C:/Users/Aleena/Desktop/Activity/index.html">⬅ Back to Home</a></p>
+</body>
+</html>

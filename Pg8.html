@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leap Year Special - Sweet House</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fff0f6, #fde2e4, #fff5e1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #4a2c2a;
+    }
+
+    .container {
+      text-align: center;
+      background: #fff8f3;
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      width: 400px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #d45a7c;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px #fbc5d8;
+    }
+
+    input {
+      padding: 12px;
+      width: 80%;
+      border: 2px solid #ffd6e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      outline: none;
+      text-align: center;
+    }
+
+    input:focus {
+      border-color: #ff7aa2;
+      box-shadow: 0 0 8px rgba(255,122,162,0.6);
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      background: #ff7aa2;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-bottom: 20px;
+    }
+
+    button:hover {
+      background: #e65a87;
+      transform: scale(1.05);
+    }
+
+    #result {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .leap {
+      color: green;
+      background: #e6ffed;
+      padding: 10px;
+      border-radius: 10px;
+      animation: pop 0.6s ease;
+    }
+
+    .not-leap {
+      color: #b8336a;
+      background: #ffe3ec;
+      padding: 10px;
+      border-radius: 10px;
+      animation: shake 0.4s ease;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 15px;
+      background: #ff7aa2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      background: #e65a87;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🎉 Leap Year Discount Checker</h2>
+    <input type="number" id="year" placeholder="Enter Year">
+    <br>
+    <button onclick="checkLeap()">Check</button>
+    <p id="result"></p>
+    <a href="file:///C:/Users/Aleena/Desktop/Activity/index.html">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    function checkLeap() {
+      let year = document.getElementById("year").value;
+      let resBox = document.getElementById("result");
+
+      if (!year) {
+        resBox.innerText = "⚠️ Please enter a year!";
+        resBox.className = "not-leap";
+        return;
+      }
+
+      if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+        resBox.innerText = "🎊 " + year + " is a Leap Year! Special Discount Available! 🍩";
+        resBox.className = "leap";
+      } else {
+        resBox.innerText = "😢 " + year + " is not a Leap Year. No discount this time!";
+        resBox.className = "not-leap";
+      }
+    }
+  </script>
+</body>
+</html>

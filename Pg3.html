@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Book a Class - Sweet House</title>
+<style>
+  :root{
+    --pink1:#ff7aa2;
+    --card:#fff8f3;
+    --accent:#b8336a;
+    --text:#4a2c2a;
+  }
+
+  html,body{height:100%;margin:0;font-family:"Segoe UI",sans-serif;background:linear-gradient(135deg,#fff0f6,#fde2e4,#fff5e1);color:var(--text);}
+  .page{max-width:900px;margin:40px auto;padding:20px;}
+  /* Form card */
+  .form-container{
+    width:420px;
+    margin:0 auto;
+    background:var(--card);
+    padding:28px;
+    border-radius:18px;
+    box-shadow:0 6px 20px rgba(0,0,0,.12);
+  }
+
+  /* Heading */
+  h2{
+    margin:0 0 18px;
+    text-align:center;
+    color:#d45a7c;
+    font-size:1.8rem;
+    text-shadow:1px 1px #fbc5d8;
+  }
+
+  /* Field labels - scoped to form fields only */
+  .field-label{
+    display:block;
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:8px;
+  }
+
+  /* Inputs and selects */
+  input[type="text"], input[type="email"], input[type="tel"], select{
+    width:100%;
+    padding:12px;
+    border:2px solid #ffd6e0;
+    border-radius:10px;
+    font-size:1rem;
+    box-sizing:border-box;
+    outline:none;
+    transition:box-shadow .2s, border-color .2s;
+  }
+  input:focus, select:focus{ border-color:var(--pink1); box-shadow:0 0 8px rgba(255,122,162,.25); }
+
+  /* Gender options: inline, aligned center */
+  .gender-options{
+    display:flex;
+    gap:20px;
+    align-items:center;
+    margin-bottom:16px;
+  }
+  .gender-options label{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--text);
+    font-weight:500;
+    margin:0;
+    cursor:pointer;
+  }
+  .gender-options input[type="radio"]{ width:auto; height:auto; }
+
+  /* Buttons */
+  .btn-group{ display:flex; gap:12px; margin-top:6px; }
+  button{ flex:1; padding:12px; border-radius:10px; border:0; font-weight:600; cursor:pointer; }
+  button[type="submit"]{ background:var(--pink1); color:#fff; }
+  button[type="reset"]{ background:#cfcfcf; color:#fff; }
+  button:hover{ transform:translateY(-2px); }
+
+  /* small back link */
+  .small-link{ text-align:center; margin-top:14px; }
+  @media(max-width:480px){
+    .form-container{ width:92%; }
+    .gender-options{ flex-direction:column; align-items:flex-start; gap:8px; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="form-container" role="region" aria-label="Booking form">
+      <h2>🎟 Reserve Your Spot</h2>
+
+      <form id="bookingForm" novalidate>
+        <label class="field-label" for="name">Name:</label>
+        <input id="name" type="text" placeholder="Enter your full name" required>
+
+        <label class="field-label" for="email">Email:</label>
+        <input id="email" type="email" placeholder="Enter your email" required>
+
+        <label class="field-label" for="phone">Phone Number:</label>
+        <input id="phone" type="tel" pattern="[0-9]{10}" placeholder="Enter your phone number" required>
+
+        <label class="field-label">Gender:</label>
+        <div class="gender-options">
+          <label><input type="radio" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" name="gender" value="Female"> Female</label>
+          <label><input type="radio" name="gender" value="Other"> Other</label>
+        </div>
+
+        <label class="field-label" for="classSelect">Choose Class:</label>
+        <select id="classSelect" required>
+          <option value="">-- Select a Class --</option>
+          <option>Bread Making 🥖</option>
+          <option>Cake Decoration 🎂</option>
+          <option>Pastry Arts 🍰</option>
+          <option>Chocolate Art 🍫</option>
+          <option>Cookies 🍪</option>
+        </select>
+
+        <div class="btn-group">
+          <button type="submit">✅ Submit</button>
+          <button type="reset">❌ Clear</button>
+        </div>
+      </form>
+
+      <div class="small-link">
+        <a href="file:///C:/Users/Aleena/Desktop/Activity/index.html" style="text-decoration:none;color:#fff;background:var(--pink1);padding:8px 12px;border-radius:8px;display:inline-block;">⬅ Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+document.getElementById('bookingForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const form = e.target;
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+
+  // nice temporary success message
+  const msg = document.createElement('div');
+  msg.textContent = '🎉 Success! Your class has been booked.';
+  Object.assign(msg.style, {
+    position:'fixed', left:'50%', top:'20px', transform:'translateX(-50%)',
+    background:'#fff', padding:'12px 18px', borderRadius:'10px', boxShadow:'0 6px 18px rgba(0,0,0,.15)',
+    color:'#b8336a', fontWeight:700, zIndex:9999
+  });
+  document.body.appendChild(msg);
+  setTimeout(()=>msg.remove(), 3000);
+
+  form.reset();
+});
+</script>
+</body>
+</html>

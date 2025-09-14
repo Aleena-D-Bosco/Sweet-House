@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Oven Temperature Converter</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fff0f6, #fde2e4, #fff5e1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #4a2c2a;
+    }
+
+    .container {
+      text-align: center;
+      background: #fff8f3;
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      width: 400px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #d45a7c;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px #fbc5d8;
+    }
+
+    input, select {
+      padding: 12px;
+      border: 2px solid #ffd6e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin: 8px;
+      outline: none;
+      width: 70%;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #ff7aa2;
+      box-shadow: 0 0 8px rgba(255,122,162,0.6);
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      background: #ff7aa2;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #e65a87;
+      transform: scale(1.05);
+    }
+
+    #output {
+      font-size: 1.3rem;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .result {
+      background: #ffe3ec;
+      padding: 12px;
+      border-radius: 10px;
+      animation: pop 0.6s ease;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 15px;
+      background: #ff7aa2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      background: #e65a87;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🌡 Oven Converter</h2>
+    <input type="number" id="temp" placeholder="Enter Value">
+    <br>
+    <select id="unit">
+      <option value="C">Celsius (°C)</option>
+      <option value="F">Fahrenheit (°F)</option>
+    </select>
+    <br>
+    <button onclick="convertTemp()">Convert</button>
+    <p id="output"></p>
+    <a href="file:///C:/Users/Aleena/Desktop/Activity/index.html">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    function convertTemp() {
+      let t = parseFloat(document.getElementById("temp").value);
+      let unit = document.getElementById("unit").value;
+      let resBox = document.getElementById("output");
+
+      if (isNaN(t)) {
+        resBox.innerText = "⚠️ Please enter a valid temperature!";
+        resBox.className = "result";
+        return;
+      }
+
+      let res = unit === "C"
+        ? `${((t * 9/5) + 32).toFixed(2)} °F 🔥`
+        : `${((t - 32) * 5/9).toFixed(2)} °C 🧁`;
+
+      resBox.innerText = "Converted: " + res;
+      resBox.className = "result";
+    }
+  </script>
+</body>
+</html>
